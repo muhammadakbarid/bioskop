@@ -136,7 +136,7 @@ class Jual extends CI_Controller
             'tgl_transaksi' => date('Y-m-d'),
             'bukti_pembayaran' => $bukti_pembayaran,
             'total_pembayaran' => $total_pembayaran,
-            'status' => "Sudah bayar",
+            'status' => "Belum bayar",
         );
 
         $insert_id = $this->Penjualan_model->insert($data_penjualan);
