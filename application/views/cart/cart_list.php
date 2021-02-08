@@ -35,71 +35,45 @@
             </ul>
         </div>
     </nav>
-
+    <!-- body -->
     <div class="container">
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET VIP</h2>
-            </center>
-            <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tanggal Transaksi</th>
+                    <th scope="col">Kursi</th>
+                    <th scope="col">Tiket</th>
+                    <th scope="col">Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($keranjang as $k) : ?>
+                    <?php
+                    $id_tiket = $k->id_tiket;
+                    $tiket = $this->db->query("SELECT nama_kategori FROM tiket where id=$id_tiket")->row();
+                    $tiket = $tiket->nama_kategori;
 
-                <?php foreach ($vip as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.75.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/75000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET REGULER</h2>
-            </center>
-            <div class="row">
+                    $id = $k->id_kursi;
+                    $kursi = $this->db->query("SELECT kode_kursi FROM kursi where id=$id")->row();
+                    $kursi = $kursi->kode_kursi;
 
-                <?php foreach ($reguler as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.50.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/50000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET EKONOMI</h2>
-            </center>
-            <div class="row">
+                    ?>
+                    <tr>
+                        <th scope="row">#</th>
+                        <td><?= $k->tgl_transaksi; ?></td>
+                        <td><?= $kursi; ?></td>
+                        <td><?= $tiket; ?></td>
+                        <td><?= $k->harga; ?></td>
 
-                <?php foreach ($ekonomi as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.25.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/25000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
-                    </div>
+                    </tr>
                 <?php endforeach ?>
-            </div>
-        </div>
+            </tbody>
+
+        </table>
+        <a href="<?= base_url('jual/checkout'); ?>"><button class="btn btn-primary">Checkout</button></a>
+
+
     </div>
 
 

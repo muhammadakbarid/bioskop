@@ -37,69 +37,33 @@
     </nav>
 
     <div class="container">
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET VIP</h2>
-            </center>
-            <div class="row">
 
-                <?php foreach ($vip as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.75.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/75000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
+        <div class="box">
+            <div class="box-body">
+                <br><br><br><br>
+                <form action="<?= base_url('jual/checkout_action'); ?>">
+                    <div class="form-group">
+                        <label for="nama_pelanggan">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" aria-describedby="emailHelp">
                     </div>
-                <?php endforeach ?>
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap</label>
+                        <textarea type="text" class="form-control" id="alamat" name="alamat"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telp">Nomor Telepon</label>
+                        <input type="password" class="form-control" id="no_telp" name="no_telp">
+                    </div>
+                    <div class="form-group">
+                        <label for="bukti_pembayaran">Bukti Pembayaran</label>
+                        <input type="file" class="form-control" name="bukti_pembayaran" id="bukti_pembayaran" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Checkout</button>
+                </form>
             </div>
         </div>
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET REGULER</h2>
-            </center>
-            <div class="row">
 
-                <?php foreach ($reguler as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.50.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/50000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
-        <br>
-        <br><br><br>
-        <div>
-            <center>
-                <h2>TIKET EKONOMI</h2>
-            </center>
-            <div class="row">
 
-                <?php foreach ($ekonomi as $k) : ?>
-                    <div class="col border">
-                        <center>
-                            <h3><?= $k->kode_kursi; ?></h3>
-                            Rp.25.000
-                            <br>
-                            <br>
-                            <a href="<?= base_url('cart/create_action/') . $k->id . "/" . $k->id_tiket . "/25000"; ?>"><button class="btn btn-primary btn-sm">Pesan</button></a>
-                        </center>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div>
     </div>
 
 

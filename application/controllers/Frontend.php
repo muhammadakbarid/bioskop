@@ -4,12 +4,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Frontend extends CI_Controller
 {
 
-
+  function __construct()
+  {
+    parent::__construct();
+    $this->load->model('Kursi_model');
+    $this->load->model('Tiket_model');
+    $this->load->library('form_validation');
+  }
   public function index()
   {
     $data['page'] = 'frontend/index';
     $data['title'] = 'Home';
-    $this->load->view('template/frontend', $data);
+    $data['vip'] = $this->Kursi_model->get_vip();
+    $data['reguler'] = $this->Kursi_model->get_reguler();
+    $data['ekonomi'] = $this->Kursi_model->get_ekonomi();
+    $this->load->view('frontend/index', $data);
   }
 
   public function about()
