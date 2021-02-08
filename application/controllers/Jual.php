@@ -12,6 +12,7 @@ class Jual extends CI_Controller
         $this->layout->auth();
         $this->layout->auth_privilege($c_url);
         $this->load->model('Jual_model');
+        $this->load->model('Penjualan_model');
         $this->load->model('Cart_model');
         $this->load->library('form_validation');
     }
@@ -110,6 +111,7 @@ class Jual extends CI_Controller
 
     public function checkout_action()
     {
+
         $bukti_pembayaran = $_FILES['bukti_pembayaran'];
         if ($bukti_pembayaran == '') {
         } else {
@@ -127,18 +129,34 @@ class Jual extends CI_Controller
                 redirect('jual/checkout');
             }
         }
-        exit;
-        $keranjang = $this->Cart_model->get_all();
-        $data = array(
-            'id_penjualan' => $this->input->post('id_penjualan', TRUE),
-            'tgl_transaksi' => $this->input->post('tgl_transaksi', TRUE),
-            'id_tiket' => $this->input->post('id_tiket', TRUE),
-            'id_kursi' => $this->input->post('id_kursi', TRUE),
-            'harga' => $this->input->post('harga', TRUE),
+        $total_pembayaran = $this->db->query("SELECT sum(harga) as total from cart")->row();
+        $total_pembayaran = $total_pembayaran->total;
+        $data_penjualan = array(
+            'nama_pelanggan' => $this->input->post('nama_pelanggan', TRUE),
+            'tgl_transaksi' => date('Y-m-d'),
+            'bukti_pembayaran' => $bukti_pembayaran,
+            'total_pembayaran' => $total_pembayaran,
+            'status' => "Sudah bayar",
         );
 
-        $this->Jual_model->insert($data);
+        $insert_id = $this->Penjualan_model->insert($data_penjualan);
+
+        $keranjang = $this->Cart_model->get_all();
+
+        foreach ($keranjang as $k) {
+            $data_keranjang = array(
+                'id_penjualan' => $insert_id,
+                'tgl_transaksi' => $k->tgl_transaksi,
+                'id_tiket' => $k->id_tiket,
+                'id_kursi' => $k->id_kursi,
+                'harga' => $k->harga,
+            );
+
+            $this->Jual_model->insert($data_keranjang);
+        }
+
+        $this->db->query("DELETE FROM CART");
         $this->session->set_flashdata('success', 'Create Record Success');
-        redirect(site_url('jual'));
+        redirect(site_url('penjualan'));
     }
 }

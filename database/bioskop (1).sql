@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2021 at 01:02 PM
+-- Generation Time: Feb 08, 2021 at 01:39 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -34,17 +34,6 @@ CREATE TABLE `cart` (
   `id_kursi` int(11) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `tgl_transaksi`, `id_tiket`, `id_kursi`, `harga`) VALUES
-(24, '2021-02-08', 3, 1, 75000),
-(25, '2021-02-08', 2, 4, 50000),
-(26, '2021-02-08', 2, 5, 50000),
-(27, '2021-02-08', 1, 8, 25000),
-(28, '2021-02-08', 1, 9, 25000);
 
 -- --------------------------------------------------------
 
@@ -162,6 +151,25 @@ CREATE TABLE `jual` (
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jual`
+--
+
+INSERT INTO `jual` (`id`, `id_penjualan`, `tgl_transaksi`, `id_tiket`, `id_kursi`, `harga`) VALUES
+(1, 1, '2021-02-08', 1, 9, 25000),
+(2, 1, '2021-02-08', 1, 8, 25000),
+(3, 1, '2021-02-08', 2, 5, 50000),
+(4, 1, '2021-02-08', 2, 4, 50000),
+(5, 1, '2021-02-08', 3, 1, 75000),
+(6, 2, '2021-02-08', 3, 2, 75000),
+(7, 2, '2021-02-08', 3, 1, 75000),
+(8, 2, '2021-02-08', 1, 9, 25000),
+(9, 2, '2021-02-08', 1, 8, 25000),
+(10, 2, '2021-02-08', 2, 5, 50000),
+(11, 2, '2021-02-08', 2, 4, 50000),
+(12, 2, '2021-02-08', 3, 1, 75000),
+(13, 3, '2021-02-08', 3, 1, 75000);
+
 -- --------------------------------------------------------
 
 --
@@ -274,6 +282,15 @@ CREATE TABLE `penjualan` (
   `total_pembayaran` int(11) NOT NULL,
   `status` enum('belum bayar','sudah bayar') NOT NULL DEFAULT 'belum bayar'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id`, `nama_pelanggan`, `alamat`, `no_telp`, `tgl_transaksi`, `bukti_pembayaran`, `total_pembayaran`, `status`) VALUES
+(1, 'dewi', '', '', '2021-02-08', '1b9d47bbfcee301ed88210ff15c417b13.png', 225000, 'sudah bayar'),
+(2, 'das', '', '', '2021-02-08', '1b9d47bbfcee301ed88210ff15c417b14.png', 375000, 'sudah bayar'),
+(3, 'dewi', '', '', '2021-02-08', '1b9d47bbfcee301ed88210ff15c417b15.png', 75000, 'sudah bayar');
 
 -- --------------------------------------------------------
 
@@ -465,7 +482,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `frontend_menu`
@@ -483,7 +500,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `jual`
 --
 ALTER TABLE `jual`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `kursi`
@@ -513,7 +530,7 @@ ALTER TABLE `menu_type`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting`

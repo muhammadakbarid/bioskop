@@ -24,13 +24,13 @@
                     <a class="nav-link" href="<?= base_url('frontend'); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Penjualan</a>
+                    <a class="nav-link" href="<?= base_url('penjualan'); ?>">Penjualan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('cart/keranjang'); ?>">Keranjang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('login'); ?>">Admin</a>
+                    <a class="nav-link" href="#">Admin</a>
                 </li>
             </ul>
         </div>

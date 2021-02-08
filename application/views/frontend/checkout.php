@@ -24,13 +24,13 @@
                     <a class="nav-link" href="<?= base_url('frontend'); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Penjualan</a>
+                    <a class="nav-link" href="<?= base_url('penjualan'); ?>">Penjualan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('cart/keranjang'); ?>">Keranjang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('login'); ?>">Admin</a>
+                    <a class="nav-link" href="#">Admin</a>
                 </li>
             </ul>
         </div>
@@ -41,25 +41,27 @@
         <div class="box">
             <div class="box-body">
                 <br><br><br><br>
-                <form action="<?= base_url('jual/checkout_action'); ?>">
-                    <div class="form-group">
-                        <label for="nama_pelanggan">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat Lengkap</label>
-                        <textarea type="text" class="form-control" id="alamat" name="alamat"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="no_telp">Nomor Telepon</label>
-                        <input type="password" class="form-control" id="no_telp" name="no_telp">
-                    </div>
-                    <div class="form-group">
-                        <label for="bukti_pembayaran">Bukti Pembayaran</label>
-                        <input type="file" class="form-control" name="bukti_pembayaran" id="bukti_pembayaran" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Checkout</button>
-                </form>
+                <!-- <form action="<?= base_url('jual/checkout_action'); ?>"> -->
+                <?php echo form_open_multipart(base_url('jual/checkout_action')); ?>
+                <div class="form-group">
+                    <label for="nama_pelanggan">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat Lengkap</label>
+                    <textarea type="text" class="form-control" id="alamat" name="alamat"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="no_telp">Nomor Telepon</label>
+                    <input type="password" class="form-control" id="no_telp" name="no_telp">
+                </div>
+                <div class="form-group">
+                    <label for="bukti_pembayaran">Bukti Pembayaran</label>
+                    <input type="file" class="form-control" name="bukti_pembayaran" id="bukti_pembayaran" />
+                </div>
+                <button type="submit" class="btn btn-primary">Checkout</button>
+                <?php echo form_close(); ?>
+                <!-- </form> -->
             </div>
         </div>
 
